@@ -73,7 +73,7 @@ userRouter.post("/login", loginValidator, async (req, res) => {
         res.status(401).json({ msg: "wrong password" });
       } else {
         console.log(user, "login id", user._id);
-        var token = jwt.sign({ userID: user._id }, process.env.key, {
+        var token = jwt.sign({ userID: user._id }, "secret", {
           expiresIn: "24h",
         });
         res.status(200).json({
